@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIA 金融产品经理 | 王煜 个人展示集</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===========================================
+       CSS CUSTOM PROPERTIES (STRUCTURE INSPIRED BY TESLA PORTFOLIO)
+       =========================================== */
+    :root {
+      --bg-primary: #ffffff;
+      --bg-gradient: #ffffff;
+      --card-bg: #ff3300;
+      --accent: #ff3300;
+      --text-primary: #0a0a0a;
+      --text-secondary: #4a4a4a;
+      --text-on-card: #ffffff;
+      --grid: rgba(0, 0, 0, 0.06);
+
+      --font-display: "Archivo Black", sans-serif;
+      --font-body: "Space Grotesk", sans-serif;
+
+      --title-size: clamp(2.2rem, 6vh, 4.5rem);
+      --h2-size: clamp(1.6rem, 4vh, 3rem);
+      --h3-size: clamp(1.1rem, 2.5vh, 1.8rem);
+      --body-size: clamp(0.85rem, 1.3vh, 1.05rem);
+      --slide-padding: clamp(1rem, 4vh, 3.5rem);
+      --content-gap: clamp(0.8rem, 2vh, 2rem);
+
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-normal: 0.8s;
+    }
+
+    /* ===========================================
+       VIEWPORT FITTING: MANDATORY BASE STYLES
+       =========================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+    }
+
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--slide-padding);
+      max-width: min(95vw, 1400px);
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .card,
+    .container,
+    .content-box {
+      max-width: min(90vw, 1000px);
+      max-height: min(85vh, 750px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--content-gap);
+      margin-top: 1.5rem;
+    }
+
+    .grid-bg {
+      background:
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / clamp(20px, 3vw, 40px) clamp(20px, 3vw, 40px),
+        linear-gradient(0deg, var(--grid) 1px, transparent 1px) 0 0 / clamp(20px, 3vw, 40px) clamp(20px, 3vw, 40px);
+    }
+
+    /* ===========================================
+       ANIMATIONS
+       =========================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity var(--duration-normal) var(--ease-out-expo),
+        transform var(--duration-normal) var(--ease-out-expo);
+    }
+
+    .slide.visible .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    .reveal:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .reveal:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    .reveal:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    .reveal:nth-child(5) {
+      transition-delay: 0.5s;
+    }
+
+    /* ===========================================
+       TESLA-LIKE STRUCTURE ELEMENTS
+       =========================================== */
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--title-size);
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: var(--h2-size);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: var(--h3-size);
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      opacity: 0.8;
+      font-weight: 400;
+    }
+
+    .red-card {
+      background: var(--card-bg);
+      padding: clamp(1.2rem, 3.5vw, 2.5rem);
+      color: var(--text-on-card);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      display: inline-block;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      padding: 2rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--accent);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .feature-card p {
+      font-size: var(--body-size);
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .list-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .list-items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: var(--body-size);
+      line-height: 1.45;
+    }
+
+    .list-items li::before {
+      content: "→";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--text-secondary);
+      font-size: clamp(0.75rem, 1.4vw, 1rem);
+    }
+
+    /* ===========================================
+       SLIDE 01: PERSONAL PROFILE REDESIGN
+       =========================================== */
+    .profile-header {
+      margin-bottom: clamp(1rem, 2vh, 1.8rem);
+    }
+
+    .profile-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vh, 3.8rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+      border-bottom: 6px solid var(--accent);
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .header-main {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      /* Mirror the body grid */
+      align-items: center;
+      gap: clamp(1.2rem, 3vh, 2rem);
+    }
+
+    .header-info {
+      display: flex;
+      gap: clamp(1rem, 3vw, 2.5rem);
+      flex-wrap: wrap;
+    }
+
+    .info-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .info-group .label {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .info-group .value {
+      font-size: clamp(1.1rem, 2vh, 1.4rem);
+      /* Increased */
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+
+    .info-group .value.name {
+      font-size: clamp(1.8rem, 3vh, 2.5rem);
+      /* Increased to match header impact */
+      font-family: var(--font-display);
+    }
+
+    .header-photo {
+      width: clamp(220px, 28vh, 320px);
+      justify-self: center;
+      /* Center horizontally within the 0.8fr column */
+      aspect-ratio: 1/1;
+      /* Changed to square for compactness */
+      border: 4px solid var(--accent);
+      padding: 8px;
+      background: #fff;
+      box-shadow: 20px 20px 0px rgba(255, 51, 0, 0.1);
+      transform: translateY(0);
+    }
+
+    .header-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(0.2) contrast(1.1);
+    }
+
+    .profile-body-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(1.2rem, 3vh, 2rem);
+      align-items: stretch;
+    }
+
+    .body-main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    .body-sidebar {
+      display: grid;
+      grid-template-rows: 1.2fr 1fr;
+      /* Proportionally split between Summary and Projects */
+      gap: 1.2rem;
+    }
+
+    .profile-card {
+      background: #fff;
+      padding: 1.2rem 1.6rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      height: 100%;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: var(--accent);
+    }
+
+    .profile-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .experience-list,
+    .skills-list {
+      list-style: none;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .experience-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+      padding-bottom: 0.5rem;
+    }
+
+    .experience-list li strong {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+
+    .experience-list li span {
+      font-size: 0.95rem;
+      /* Slightly larger for balance */
+      color: var(--text-secondary);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .skills-list li::before {
+      content: "→";
+      color: var(--accent);
+      margin-right: 0.8rem;
+      font-weight: 700;
+    }
+
+    .summary-card {
+      background: var(--accent);
+      padding: 1.2rem 1.6rem;
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(255, 51, 0, 0.15);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-card {
+      background: #fafafa;
+      padding: 1.2rem 1.6rem;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-right: 6px solid var(--accent);
+      /* Mirror the accent on the right */
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .project-list {
+      list-style: none;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .project-list li {
+      font-size: 1rem;
+      /* Increased font size */
+      line-height: 1.4;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .project-list li strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+
+    .summary-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 0.4rem;
+    }
+
+    .summary-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .summary-card li {
+      font-size: 1rem;
+      /* Increased font size */
+      line-height: 1.4;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .summary-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ===========================================
+       SLIDE 02: WHY ME & WHY AIA
+       =========================================== */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .split-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .split-col.white {
+      background: #f7f7f7;
+      /* Subtle off-white for visual weight */
+      color: var(--text-primary);
+      padding: 2.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .split-col.red {
+      background: var(--accent);
+      color: #fff;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .split-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .split-number {
+      font-size: 4rem;
+      font-family: var(--font-display);
+      opacity: 0.2;
+      /* Increased slightly for red */
+      line-height: 0.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .split-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .split-title span {
+      display: block;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      /* Default to dark for standard slides */
+      letter-spacing: 0.1em;
+      margin-top: 0.4rem;
+    }
+
+    .split-col.red .split-title span,
+    .split-col.dark .split-title span {
+      color: rgba(255, 255, 255, 0.8);
+      /* Revert to light for dark backgrounds */
+    }
+
+    .split-col.white .split-title {
+      color: var(--accent);
+    }
+
+    .split-col.white .split-title span {
+      color: var(--text-secondary);
+      /* Fixed visibility for white column */
+    }
+
+    .split-col.dark .split-title span {
+      color: var(--accent);
+    }
+
+    .match-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.02);
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .split-col.white .match-item {
+      background: #fff;
+      /* True white items for contrast on off-white bg */
+      border-left: 4px solid var(--accent);
+    }
+
+    .split-col.white .match-icon {
+      color: var(--accent);
+    }
+
+    .split-col.red .match-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid #fff;
+    }
+
+    .match-icon {
+      font-size: 1.8rem;
+      opacity: 0.9;
+      color: #fff;
+    }
+
+    .split-col.dark .match-icon {
+      color: var(--accent);
+    }
+
+    .match-content h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .split-col.white .match-content h4 {
+      color: var(--accent);
+    }
+
+    .match-content p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      opacity: 0.8;
+    }
+
+    /* ===========================================
+       SLIDE 03: PROJECT GRID & BADGES
+       =========================================== */
+    .project-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-card {
+      background: #fff;
+      padding: 2rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+      border-color: var(--accent);
+    }
+
+    .value-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    .stat-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      line-height: 1.4;
+      min-height: 3rem;
+    }
+
+    .stat-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ===========================================
+       PORTED: MOCKUP & ANIMATIONS (FROM TESLA)
+       =========================================== */
+    .image-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .mockup-container {
+      position: relative;
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 9/17.5;
+      background: #000;
+      border-radius: 32px;
+      padding: 8px;
+      box-shadow: 0 50px 100px rgba(0, 0, 0, 0.1);
+      border: 4px solid #333;
+    }
+
+    .mockup-screen {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .mockup-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .floating-mockup {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-mockup-delayed {
+      animation: float 6s ease-in-out infinite;
+      animation-delay: -3s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .para-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .para-card {
+      background: rgba(0, 0, 0, 0.02);
+      padding: 1.2rem;
+      border-bottom: 3px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .para-card h5 {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .para-card p {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 900px) {
+      .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .profile-body-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-photo {
+        align-self: center;
+        margin-top: 1rem;
+      }
+    }
+
+    .slide+.slide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: clamp(10px, 1.2vh, 16px);
+      background: #f2f2f2;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      z-index: 9;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--accent);
+      z-index: 1000;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Navigation Dots */
+    .nav-dots {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.5);
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <style>
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
+      body,
+      html {
+        height: auto !important;
+        overflow: visible !important;
+        background: #fff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        scroll-snap-type: none !important;
+      }
+
+      .slide {
+        height: 100vh !important;
+        width: 100vw !important;
+        page-break-after: always;
+        scroll-snap-align: none;
+        overflow: hidden;
+        position: relative;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+
+      /* Ensure all elements are visible during print */
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+      }
+
+      .nav-dots,
+      .progress-bar,
+      .edit-toggle,
+      .edit-hotzone {
+        display: none !important;
+      }
+
+      .slide-content {
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 5% !important;
+      }
+
+      /* Generic optimization for vertical space in print */
+      .slide .slide-content {
+        padding-top: 3vh !important;
+        padding-bottom: 3vh !important;
+      }
+
+      /* Hide UI Elements */
+      .nav-dots,
+      .progress-bar,
+      .slide::before {
+        display: none !important;
+      }
+
+      /* Fix Shadow Artifacts */
+      .mockup-container,
+      .avatar-container,
+      .feature-card {
+        box-shadow: none !important;
+      }
+
+      [style*="box-shadow"] {
+        box-shadow: none !important;
+      }
+
+      .image-container {
+        perspective: none !important;
+      }
+
+      img {
+        max-height: 45vh !important;
+        object-fit: contain !important;
+      }
+
+      /* Slide 01 Specific Print Tweak */
+      .slide:first-child .profile-title {
+        font-size: 2.2rem !important;
+      }
+
+      .slide:first-child .header-photo {
+        width: 180px !important;
+        height: 180px !important;
+      }
+
+      .slide:first-child .profile-header {
+        margin-bottom: 1rem !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+      }
+
+      .slide:first-child .profile-body-grid {
+        gap: 1rem !important;
+      }
+
+      .slide:first-child .profile-card,
+      .slide:first-child .summary-card,
+      .slide:first-child .project-card {
+        padding: 1rem !important;
+      }
+
+      .slide:first-child .experience-list li {
+        padding-bottom: 0.3rem !important;
+      }
+
+      .live-link {
+        display: block !important;
+        position: absolute !important;
+        top: 2.2rem !important;
+        right: 3rem !important;
+        padding: 0.8rem 1.6rem !important;
+        background: var(--accent) !important;
+        color: #fff !important;
+        text-decoration: none !important;
+        font-family: var(--font-display) !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.1em !important;
+        border-radius: 6px !important;
+        box-shadow: 0 8px 16px rgba(255, 51, 0, 0.2) !important;
+        z-index: 9999 !important;
+        white-space: nowrap !important;
+        border: none !important;
+        transition: transform 0.3s ease !important;
+      }
+    }
+
+    .live-link {
+      display: none;
+      /* Hidden by default on web */
+      position: absolute;
+      top: 2.2rem;
+      right: 3rem;
+      padding: 0.8rem 1.6rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      border-radius: 6px;
+      box-shadow: 0 8px 16px rgba(255, 51, 0, 0.2);
+      z-index: 100;
+      white-space: nowrap;
+      transition: all 0.3s var(--ease-out-expo);
+      border: none;
+    }
+
+    .live-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(255, 51, 0, 0.3);
+      filter: brightness(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  <nav class="nav-dots" id="navDots"></nav>
+
+  <!-- SLIDE 01: PROFILE -->
+  <section class="slide grid-bg">
+    <div class="slide-content">
+      <header class="profile-header reveal">
+        <div style="flex: 1;">
+          <h1 class="profile-title">PERSONAL PROFILE</h1>
+          <div class="header-main">
+            <div class="header-info">
+              <div class="info-group">
+                <span class="label">NAME</span>
+                <div class="value name">王煜 / Yu Wang</div>
+              </div>
+              <div class="info-group">
+                <span class="label">EDUCATION</span>
+                <div class="value">香港中文大学 · 房地产及旅游资产管理（硕士）</div>
+                <div class="value">江西财经大学 · 国际金融（本科）</div>
+              </div>
+            </div>
+            <div class="header-photo">
+              <img src="assets/avatar_professional.png" alt="王煜证件照">
+            </div>
+          </div>
+        </div>
+      </header>
+      <a href="https://wyleon.github.io/aia-resume-slides/" class="live-link">点击浏览网页版本（电脑端） ↗</a>
+
+      <div class="profile-divider reveal"></div>
+
+      <div class="profile-body-grid">
+        <div class="body-main">
+          <div class="profile-card reveal">
+            <h4>工作履历 / EXPERIENCE</h4>
+            <ul class="experience-list">
+              <li>
+                <strong>中信金融资产管理（广东）</strong>
+                <span>投资经理 | 2021.12 - 至今</span>
+              </li>
+              <li>
+                <strong>中建三局城市投资运营</strong>
+                <span>业务经理 | 2020.07 - 2021.12</span>
+              </li>
+              <li>
+                <strong>苏宁控股集团</strong>
+                <span>总裁办公室（置业投资） | 2019.08 - 2020.02</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="profile-card reveal">
+            <h4>专业技能 / QUALIFICATIONS</h4>
+            <ul class="skills-list">
+              <li>CFA Level III PASS（2023.05）</li>
+              <li>IELTS 7.0（听力 8.5 / 阅读 8.0）</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="body-sidebar">
+          <div class="summary-card reveal">
+            <h4>EXECUTIVE SUMMARY</h4>
+            <ul>
+              <li>多年央国企投资管理履历，熟悉合规与交易结构</li>
+              <li>能将复杂金融诉求转化为可交付 IT 方案</li>
+              <li>具备跨部门协同与端到端交付能力</li>
+              <li>具备系统化思维与技术底色，推动项目落地</li>
+            </ul>
+          </div>
+
+          <div class="project-card reveal">
+            <h4>DIGITAL DELIVERY / 数字化项目落地经验</h4>
+            <ul class="project-list">
+              <li>
+                <strong>PocketStart:</strong>
+                0基础单人全栈开发vibe coding上线英语启蒙webapp
+              </li>
+              <li>
+                <strong>OpenClaw:</strong>
+                个性化部署，实现 Agent 与知识库及日常工作流的深度融合
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 02: WHY ME / WHY AIA -->
+  <section class="slide" id="why-me">
+    <div class="slide-content">
+      <div class="split-grid">
+        <!-- WHY ME -->
+        <div class="split-col white reveal">
+          <div class="split-header">
+            <h2 class="split-title">WHY ME<span>核心胜任力 / 价值锚点提升</span></h2>
+          </div>
+
+          <div class="match-item">
+            <div class="match-icon">◈</div>
+            <div class="match-content">
+              <h4>投研基因 (Investment Native)</h4>
+              <p>CFA Level III PASS，结合多年央国企投资管理实战，深刻理解投研协作、资产管理及合规交易逻辑。</p>
+            </div>
+          </div>
+
+          <div class="match-item">
+            <div class="match-icon">◈</div>
+            <div class="match-content">
+              <h4>技术译码 (Tech Translation)</h4>
+              <p>具备“Vibe Coding”前沿实操经验，能将模糊的金融业务指标转化为结构化的技术语义与可执行模块。</p>
+            </div>
+          </div>
+
+          <div class="match-item">
+            <div class="match-icon">◈</div>
+            <div class="match-content">
+              <h4>交付领导力 (Delivery Leadership)</h4>
+              <p>主办落地累计超 40 亿元非标复杂投资项目，习惯于在不确定性中通过标准化流程推动结果闭环。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHY THIS JOB -->
+        <div class="split-col red reveal">
+          <div class="split-header">
+            <h2 class="split-title">WHY AIA<span>岗位契合 / 战略协同提升</span></h2>
+          </div>
+
+          <div class="match-item">
+            <div class="match-icon">◈</div>
+            <div class="match-content">
+              <h4>定义关键枢纽 (The Bridge)</h4>
+              <p>匹配 JD 对“桥梁”角色的诉求，以业务语言驱动 IT 交付，消除认知偏差与协作壁垒。</p>
+            </div>
+          </div>
+
+          <div class="match-item">
+            <div class="match-icon">✔</div>
+            <div class="match-content">
+              <h4>业务驱动的技术观 (Biz-First IT)</h4>
+              <p>不只是交付功能，而是通过 AI 工作流编排等数字化手段，为 AIA 投研体系提供可持续的生产力增量。</p>
+            </div>
+          </div>
+
+          <div class="match-item">
+            <div class="match-icon">✔</div>
+            <div class="match-content">
+              <h4>管理实践与规范化 (Governance)</h4>
+              <p>契合管理 BA 团队并定义 BA 规范的目标，将个人交付经验转化为组织的标准化资产，提升整体运营效率。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 03: FINANCIAL PROJECT SHOWCASE -->
+  <section class="slide grid-bg" id="citic-projects">
+    <div class="slide-content">
+      <div class="split-header" style="margin-bottom: 2rem;">
+        <h2 class="split-title" style="color: var(--accent);">Financial Track Record<span>中信金融资产 · 实操典型项目</span></h2>
+      </div>
+
+      <div class="project-showcase-grid">
+        <!-- Project 1 -->
+        <div class="stat-card reveal" style="transition-delay: 0.1s">
+          <div class="match-icon" style="color: var(--accent); margin-bottom: 0.5rem;">◈</div>
+          <h4>HFGC 低效资产盘活项目</h4>
+          <p>主导大规模资产清查与价值重构，协调多方利益主体，实现低效资产的股权重组及有效盘活。</p>
+          <div class="value-badge">21.0 亿元</div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="stat-card reveal" style="transition-delay: 0.2s">
+          <div class="match-icon" style="color: var(--accent); margin-bottom: 0.5rem;">◈</div>
+          <h4>YJL 违约债券收购重组项目</h4>
+          <p>在29个自然日内，运用“回售+转售”手段收购债券，认购CDS保护工具为行业首单，在极限时间内逐一落实关键节点，保障项目稳步落地。</p>
+          <div class="value-badge">2.2 亿元</div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="stat-card reveal" style="transition-delay: 0.3s">
+          <div class="match-icon" style="color: var(--accent); margin-bottom: 0.5rem;">◈</div>
+          <h4>ZY 产业园司法拍卖项目</h4>
+          <p>通过司法拍卖程序获取优质产业资产，完成从估值建模到最终竞拍落地的全流程投资决策及执行。</p>
+          <div class="value-badge">1.5 亿元</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 04: POCKETSTART OVERVIEW (TESLA 03) -->
+  <section class="slide grid-bg" id="pocketstart-intro">
+    <div class="slide-content">
+      <div class="split-layout"
+        style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center;">
+        <div class="reveal">
+          <div class="split-header" style="margin-bottom: 1.5rem;">
+            <h2 class="split-title" style="color: var(--accent);">Digital Innovation // 01<span>PocketStart ·
+                全栈交付与自动化内容生产</span></h2>
+          </div>
+          <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.6; color: var(--text-primary);">
+            开发基于“可理解性输入”理念开发的英语启蒙平台 WebApp，独立构想并落地前后端设计，实现 <strong>AI 驱动的内容全自动化生产流</strong>。
+          </p>
+          <ul class="list-items" style="display: flex; flex-direction: column; gap: 1.2rem;">
+            <li style="display: flex; align-items: flex-start; gap: 1rem;">
+              <strong style="white-space: nowrap; min-width: 120px; color: var(--accent);">产品导向</strong>
+              <span>结合用户痛点精准定义需求，通过 AI 编排实现 Excel 剧本一键转视频。</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 1rem;">
+              <strong style="white-space: nowrap; min-width: 120px; color: var(--accent);">Vibe Coding</strong>
+              <span>应用前沿方法论，将传统周级开发周期压缩至分钟级，展现极致交付力。</span>
+            </li>
+          </ul>
+        </div>
+        <div class="reveal" style="text-align: center;">
+          <div class="stat-card" style="border-color: var(--accent); background: #fff; padding: 2rem;">
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">全栈开发 · 独立部署 · 极速落地</p>
+            <a href="https://pocketstart.top" target="_blank"
+              style="padding: 1rem 2rem; background: var(--accent); color: #fff; text-decoration: none; font-family: var(--font-display); display: inline-block;">LIVE
+              PREVIEW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 05: POCKETSTART MOCKUPS (TESLA 04) -->
+  <section class="slide grid-bg" id="pocketstart-mockups">
+    <div class="slide-content">
+      <div class="split-header" style="margin-bottom: 3rem; text-align: center;">
+        <h2 class="split-title" style="color: var(--accent);">Interactive Experience<span>高交互Webapp展示</span></h2>
+      </div>
+      <div class="image-container reveal" style="perspective: 1000px;">
+        <!-- Left -->
+        <div class="mockup-container floating-mockup" style="transform: scale(0.85) rotate(-5deg); opacity: 0.7;">
+          <div class="mockup-screen"><img src="https://wyleon.github.io/tesla-portfolio/assets/pocketstart_list.jpg"
+              alt="PocketStart List"></div>
+        </div>
+        <!-- Center -->
+        <div class="mockup-container floating-mockup-delayed" style="z-index: 10; border-color: var(--accent);">
+          <div class="mockup-screen"><img
+              src="https://wyleon.github.io/tesla-portfolio/assets/pocketstart_interface.jpg" alt="PocketStart Main">
+          </div>
+        </div>
+        <!-- Right -->
+        <div class="mockup-container floating-mockup" style="transform: scale(0.85) rotate(5deg); opacity: 0.7;">
+          <div class="mockup-screen"><img src="https://wyleon.github.io/tesla-portfolio/assets/pocketstart_detail.jpg"
+              alt="PocketStart Detail"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 06: OPENCLAW & PARA (TESLA 05) -->
+  <section class="slide grid-bg" id="openclaw-para">
+    <div class="slide-content">
+      <div class="split-header" style="margin-bottom: 2rem;">
+        <h2 class="split-title" style="color: var(--accent);">Digital Innovation // 02<span>OpenClaw · 基于 PARA 的 Chief
+            of Staff 系统</span></h2>
+      </div>
+      <p style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-primary);">基于 OpenClaw 框架搭建的个人决策办公系统，实现
+        Agent 与个人知识库的深度融合与自动化管理。</p>
+
+      <div class="para-grid reveal">
+        <div class="para-card">
+          <h5>PROJECTS</h5>
+          <p>带明确目标和截止日期的短期努力。</p>
+        </div>
+        <div class="para-card">
+          <h5>AREAS</h5>
+          <p>需长期维护并保持高标准的责任范围。</p>
+        </div>
+        <div class="para-card">
+          <h5>RESOURCES</h5>
+          <p>未来可能感兴趣或有用的知识储备。</p>
+        </div>
+        <div class="para-card">
+          <h5>ARCHIVES</h5>
+          <p>已完成或非活跃的历史事项归档。</p>
+        </div>
+      </div>
+
+      <ul class="list-items reveal">
+        <li style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem;">
+          <strong style="min-width: 200px; color: var(--accent);">Agent-Native Second Brain</strong>
+          <span>基于 PARA 理论打造电子第二大脑，打通 Capture — Organize — Express 闭环。</span>
+        </li>
+        <li style="display: flex; align-items: flex-start; gap: 1rem;">
+          <strong style="min-width: 200px; color: var(--accent);">Personalized Skill Set</strong>
+          <span>自建 Skill Set，通过自动化工作流显著降低决策摩擦与信息延迟。（Todo Management、项目管理、晨报日记、健康追踪、家庭账本等）</span>
+        </li>
+        <li style="display: flex; align-items: flex-start; gap: 1rem;">
+          <strong style="min-width: 200px; color: var(--accent);">Dynamic Optimization</strong>
+          <span>基于前沿理念动态优化 Agent 性能（如：Open AI开发blogs，Claude Skill Optimization文章等）。</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 07: OPENCLAW IN ACTION (OPERATIONAL CASE STUDY) -->
+  <section class="slide grid-bg" id="openclaw-action">
+    <div class="slide-content">
+      <div class="split-header" style="margin-bottom: 2rem;">
+        <h2 class="split-title" style="color: var(--accent);">Operational Case Study<span>OpenClaw 实战场景：Obsidian
+            自动化管理</span></h2>
+      </div>
+      <div class="project-showcase-grid reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+        <div class="stat-card">
+          <h4>Obsidian Automation</h4>
+          <p>深度嵌入日常工作流，利用 Agent 自动化巡检代办事项与项目进度，实现“无感管理”。</p>
+          <div style="margin-top: 1rem; border: 1px solid #eee; overflow: hidden;"><img
+              src="https://wyleon.github.io/tesla-portfolio/assets/obsidian_dashboard.jpg"
+              style="width: 100%; height: auto; display: block;" alt="Obsidian Dashboard"></div>
+        </div>
+        <div class="stat-card">
+          <h4>PARA Knowledge Base</h4>
+          <p>利用 Obsidian 可视化知识图谱，通过 Agent 自动化维护资源的关联性，构建结构化智慧资产。</p>
+          <div style="margin-top: 1rem; border: 1px solid #eee; overflow: hidden;"><img
+              src="https://wyleon.github.io/tesla-portfolio/assets/openclaw_resources.jpg"
+              style="width: 100%; height: auto; display: block;" alt="PARA Visualization"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 08: CLOSING (THANK YOU) -->
+  <section class="slide grid-bg" id="closing">
+    <div class="slide-content" style="align-items: center; justify-content: center; text-align: center;">
+      <div class="red-card reveal" style="padding: 4rem; box-shadow: 0 50px 100px rgba(255, 51, 0, 0.2);">
+        <h1 style="color: #fff; margin-bottom: 1rem;">THANK YOU</h1>
+        <p class="tagline"
+          style="color: rgba(255,255,255,0.9); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.1em;">HEALTHIER,
+          LONGER, BETTER LIVES</p>
+        <p style="color: rgba(255,255,255,0.7); margin-top: 0.5rem;">健康 · 长久 · 好生活</p>
+      </div>
+
+      <div class="reveal" style="margin-top: 4rem;">
+        <p style="font-size: 1.2rem; font-weight: 700; color: var(--text-primary);">王煜 / Leon</p>
+        <p style="color: var(--accent); font-weight: 700; margin-top: 1rem; letter-spacing: 0.2em;">READY TO START THE
+          JOURNEY</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    class SlidePresentation {
+      constructor() {
+        this.slides = document.querySelectorAll(".slide");
+        this.progressBar = document.getElementById("progressBar");
+        this.navDots = document.getElementById("navDots");
+        this.currentSlideIndex = 0;
+        this.init();
+      }
+
+      init() {
+        this.setupIntersectionObserver();
+        this.setupKeyboardNav();
+        this.setupNavDots();
+        this.setupScrollListener();
+        this.initEnvironmentLogic();
+      }
+
+      initEnvironmentLogic() {
+        // Show live-link only if opened as a local file (to avoid recursion on web)
+        if (window.location.protocol === 'file:') {
+          const liveLink = document.querySelector('.live-link');
+          if (liveLink) liveLink.style.display = 'block';
+        }
+      }
+
+      setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              this.updateActiveDot(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        this.slides.forEach(slide => observer.observe(slide));
+      }
+
+      setupKeyboardNav() {
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowDown" || e.key === " " || e.key === "PageDown") {
+            e.preventDefault();
+            this.navigate(1);
+          } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+            e.preventDefault();
+            this.navigate(-1);
+          }
+        });
+      }
+
+      setupNavDots() {
+        this.slides.forEach((_, index) => {
+          const dot = document.createElement("div");
+          dot.className = "dot";
+          dot.addEventListener("click", () => {
+            this.slides[index].scrollIntoView({ behavior: "smooth" });
+          });
+          this.navDots.appendChild(dot);
+        });
+        this.updateActiveDot(this.slides[0]);
+      }
+
+      updateActiveDot(activeSlide) {
+        const index = Array.from(this.slides).indexOf(activeSlide);
+        const dots = this.navDots.querySelectorAll(".dot");
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+        this.currentSlideIndex = index;
+      }
+
+      setupScrollListener() {
+        window.addEventListener("scroll", () => {
+          const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+          this.progressBar.style.width = scrollPercent + "%";
+        });
+      }
+
+      navigate(direction) {
+        const nextIndex = Math.min(Math.max(0, this.currentSlideIndex + direction), this.slides.length - 1);
+        this.slides[nextIndex].scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    window.addEventListener("load", () => {
+      new SlidePresentation();
+    });
+  </script>
+</body>
+
+</html>
