@@ -881,9 +881,9 @@
       }
 
       .slide-content {
-        max-width: 90%;
+        max-width: 95%;
         margin: 0 auto;
-        padding: 5% !important;
+        padding: 2% !important;
       }
 
       /* Generic optimization for vertical space in print */
@@ -921,33 +921,50 @@
 
       /* Slide 01 Specific Print Tweak */
       .slide:first-child .profile-title {
-        font-size: 2.2rem !important;
+        font-size: 1.6rem !important;
+        margin-bottom: 0.3rem !important;
+        margin-top: 0 !important;
       }
-
       .slide:first-child .header-photo {
-        width: 180px !important;
-        height: 180px !important;
+        width: 110px !important;
+        height: 110px !important;
       }
-
       .slide:first-child .profile-header {
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.5rem !important;
+        margin-top: 0 !important;
         display: flex !important;
         justify-content: space-between !important;
         align-items: flex-start !important;
       }
-
       .slide:first-child .profile-body-grid {
-        gap: 1rem !important;
+        gap: 0.5rem !important;
       }
-
-      .slide:first-child .profile-card,
-      .slide:first-child .summary-card,
+      .slide:first-child .profile-card, 
+      .slide:first-child .summary-card, 
       .slide:first-child .project-card {
-        padding: 1rem !important;
+        padding: 0.5rem 0.8rem !important;
       }
-
+      .slide:first-child .summary-card h4, 
+      .slide:first-child .project-card h4,
+      .slide:first-child .profile-card h4 {
+        margin-bottom: 0.2rem !important;
+        font-size: 0.9rem !important;
+      }
       .slide:first-child .experience-list li {
-        padding-bottom: 0.3rem !important;
+        padding-bottom: 0.15rem !important;
+      }
+      .slide:first-child .profile-divider {
+        margin: 0.4rem 0 !important;
+      }
+      .slide:first-child .body-sidebar {
+        gap: 0.5rem !important;
+      }
+      .slide:first-child .value, .slide:first-child p, .slide:first-child li, .slide:first-child span {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+      }
+      .slide:first-child .info-group {
+        margin-bottom: 0.3rem !important;
       }
 
       .live-link {
