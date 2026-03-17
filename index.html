@@ -921,33 +921,42 @@
 
       /* Slide 01 Specific Print Tweak */
       .slide:first-child .profile-title {
-        font-size: 2.2rem !important;
+        font-size: 1.8rem !important; /* Reduced further */
+        margin-bottom: 0.5rem !important;
       }
-
       .slide:first-child .header-photo {
-        width: 180px !important;
-        height: 180px !important;
+        width: 150px !important; /* Reduced further */
+        height: 150px !important;
       }
-
       .slide:first-child .profile-header {
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.8rem !important;
         display: flex !important;
         justify-content: space-between !important;
         align-items: flex-start !important;
       }
-
       .slide:first-child .profile-body-grid {
-        gap: 1rem !important;
+        gap: 0.8rem !important;
       }
-
-      .slide:first-child .profile-card,
-      .slide:first-child .summary-card,
+      .slide:first-child .profile-card, 
+      .slide:first-child .summary-card, 
       .slide:first-child .project-card {
-        padding: 1rem !important;
+        padding: 0.8rem !important; /* Tighter padding */
       }
-
+      .slide:first-child .summary-card h4, 
+      .slide:first-child .project-card h4 {
+        margin-bottom: 0.4rem !important;
+      }
       .slide:first-child .experience-list li {
-        padding-bottom: 0.3rem !important;
+        padding-bottom: 0.2rem !important;
+      }
+      .slide:first-child .profile-divider {
+        margin: 0.8rem 0 !important;
+      }
+      .slide:first-child .body-sidebar {
+        gap: 0.8rem !important;
+      }
+      .slide:first-child .value, .slide:first-child p, .slide:first-child li {
+        font-size: 0.85rem !important; /* Global shink for S1 */
       }
 
       .live-link {
